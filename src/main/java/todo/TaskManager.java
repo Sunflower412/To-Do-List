@@ -1,3 +1,5 @@
+package todo;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -7,7 +9,10 @@ public class TaskManager {
     private List<Task> tasks;
 
     public TaskManager() {
-        tasks = new ArrayList<>();
+        tasks = new FileManager().loadTasks();
+        if(tasks == null){
+            tasks = new ArrayList<>();
+        }
     }
 
     public void addTask(Priority priority, String title, String discription, boolean isCompleted){
