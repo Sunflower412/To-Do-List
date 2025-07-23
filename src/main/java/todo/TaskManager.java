@@ -24,7 +24,7 @@ public class TaskManager {
         System.out.println("Список всех задач: ");
         for (Task task : tasks){
             System.out.println();
-            System.out.println(task);
+            System.out.println(task.getTaskInfo());
         }
     }
     public List<Task> getTasksByStatus(boolean completed){
@@ -71,6 +71,9 @@ public class TaskManager {
         else {
             System.out.println("Задачи с таким id не существует.");
         }
+    }
+    public void saveTasks(){
+        new FileManager().saveTasks(tasks);
     }
 
 }
