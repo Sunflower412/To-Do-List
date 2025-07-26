@@ -7,8 +7,8 @@ public class Main {
     private static TaskManager taskManager = new TaskManager();
     private static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
-        Task task = new Task(1, Priority.Low, "String title", "String discription", true);
-        System.out.println(task.getTaskInfo());
+//        Task task = new Task(1, Priority.Low, "String title", "String discription", true);
+//        System.out.println(task.getTaskInfo());
         while (true) {
             String choice = getUserChoice();
             if(choice == null) {
@@ -91,6 +91,7 @@ public class Main {
         if(taskManager.markTaskAsCompleted(id)){
             taskManager.saveTasks();
             System.out.println("Задача помечена как выполненная.");
+            System.out.println();
         }
         else{
             System.out.println("Задача не найдена");

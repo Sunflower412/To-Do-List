@@ -64,8 +64,8 @@ public class Task {
         return isCompleted;
     }
 
-    public boolean setCompleted(boolean completed) {
-        return completed;
+    public void setCompleted(boolean completed) {
+        isCompleted = completed;
     }
 
     public String getTaskInfo(){
