@@ -1,76 +1,39 @@
 package todo;
 
 public class Task {
-
     private int id;
     private Priority priority;
     private String title;
-    private String discription;
+    private String description;
     private boolean isCompleted;
 
+    public Task() {} // Конструктор по умолчанию для Gson
 
-    public Task(int id, Priority priority, String title, String discription, boolean isCompleted) {
+    public Task(int id, Priority priority, String title, String description, boolean isCompleted) {
         this.id = id;
         this.priority = priority;
         this.title = title;
-        this.discription = discription;
+        this.description = description;
         this.isCompleted = isCompleted;
     }
 
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
 
-    public int getId() {
-        return id;
-    }
+    public Priority getPriority() { return priority; }
+    public void setPriority(Priority priority) { this.priority = priority; }
 
-    public int setId(int id) {
-        if (id >= 0){
-            return id;
-        }
-        else{
-            throw new IllegalArgumentException("Недопустимое значение для id. Возможно Вы ввели пустую строку или введенное id содержит нечисленное значение.");
-        }
-    }
+    public String getTitle() { return title; }
+    public void setTitle(String title) { this.title = title; }
 
-    public Priority getPriority() {
-        return priority;
-    }
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
 
-    public Priority setPriority(Priority priority) {
-        if (priority != null){
-            return priority;
-        }
-        else {
-            throw new IllegalArgumentException("Введена пустая строка.");
-        }
-    }
+    public boolean isCompleted() { return isCompleted; }
+    public void setCompleted(boolean isCompleted) { this.isCompleted = isCompleted; }
 
-    public String getDiscription() {
-        return discription;
-    }
-
-    public String setDiscription(String discription) {
-        return discription;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String setTitle(String title) {
-        return title;
-    }
-
-    public boolean isCompleted() {
-        return isCompleted;
-    }
-
-    public void setCompleted(boolean completed) {
-        isCompleted = completed;
-    }
-
-    public String getTaskInfo(){
-        return "TASK INFO: " + "\n" + "Id: " + id + "\n" + "Приоритет: " + priority + "\n"
-                + "Название: " + title + "\n" + "Описание: " + discription +
-                "\n" + "Статус: " + isCompleted;
+    public String getTaskInfo() {
+        return "TASK INFO: \nId: " + id + "\nПриоритет: " + priority + "\nНазвание: " + title +
+                "\nОписание: " + description + "\nСтатус: " + isCompleted;
     }
 }

@@ -1,6 +1,7 @@
 package todo;
 
 import todo.TaskManager;
+//import todo.TaskManagerTest;
 
 import java.util.Scanner;
 public class Main {
@@ -98,26 +99,54 @@ public class Main {
         }
     }
 
-    private static void updateTask(){
-        System.out.println("Введите id задачи: ");
-        int id = scanner.nextInt();
-        scanner.nextLine();
-        System.out.println("Введите новое название: ");
-        String title = scanner.nextLine();
-        System.out.println("Введите новое описание: ");
-        String description = scanner.nextLine();
-        System.out.println("Введите новый приоритет(Low, Medium, High): ");
-        Priority priority = Priority.valueOf(scanner.nextLine());
+    private static void updateTask() {
+        try {
+            System.out.println("Введите id задачи для редактирования: ");
+            int id = scanner.nextInt();
+            scanner.nextLine();
 
-        if (taskManager.updateTask(id, title, description, priority)){
-            taskManager.saveTasks();
-            System.out.println("Задача обновлена.");
-        }
-        else{
-            System.out.println("Задачи с указанным id не найдена.");
+            Task task = taskManager.findTaskById(id);
+            if (task == null) {
+                System.out.println("Ошибка: задача с ID " + id + " не найдена!");
+                return;
+            }
+
+            System.out.println("Текущие данные задачи:");
+            System.out.println(task.getTaskInfo());
+
+            System.out.println("Введите новое название (или нажмите Enter чтобы оставить текущее): ");
+            String newTitle = scanner.nextLine().trim();
+            if (newTitle.isEmpty()) newTitle = task.getTitle();
+
+            System.out.println("Введите новое описание (или нажмите Enter чтобы оставить текущее): ");
+            String newDescription = scanner.nextLine().trim();
+            if (newDescription.isEmpty()) newDescription = task.getDescription();
+
+            System.out.println("Введите новый приоритет (Low, Medium, High) (или нажмите Enter чтобы оставить текущий): ");
+            String priorityInput = scanner.nextLine().trim();
+            Priority newPriority = task.getPriority();
+            if (!priorityInput.isEmpty()) {
+                try {
+                    newPriority = Priority.valueOf(priorityInput);
+                } catch (IllegalArgumentException e) {
+                    System.out.println("Ошибка: некорректный приоритет! Приоритет не изменён.");
+                }
+            }
+
+            System.out.println("Передаваемые данные: title=" + newTitle + ", description=" + newDescription + ", priority=" + newPriority); // Отладка
+            if (taskManager.updateTask(id, newTitle, newDescription, newPriority)) {
+
+                System.out.println("Задача успешно обновлена и сохранена!");
+            }
+                 else {
+                    System.out.println("Ошибка при сохранении изменений!");
+                }
+
+        } catch (Exception e) {
+            System.out.println("Ошибка при редактировании задачи: " + e.getMessage());
+            scanner.nextLine();
         }
     }
-
     private static void deleteTask() {
         System.out.println("Введите Id задачи: ");
         int id = scanner.nextInt();
