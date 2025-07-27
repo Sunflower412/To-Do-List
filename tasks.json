@@ -19,5 +19,12 @@
     "title": "Сходить в супермаркет",
     "description": "Купить овощи",
     "isCompleted": false
+  },
+  {
+    "id": 4,
+    "priority": "High",
+    "title": "Погулять",
+    "description": "Встретиться с Глебом",
+    "isCompleted": false
   }
 ]
