@@ -1,6 +1,7 @@
-todo\Priority.class
 todo\FileManager.class
+todo\MainController.class
+todo\Main.class
+todo\Priority.class
 todo\Task.class
 todo\TaskManager.class
 todo\FileManager$1.class
-todo\Main.class
