@@ -26,4 +26,5 @@
     <Button text="Показать все задачи" onAction="#showAllTasks"/>
     <Button text="Редактировать задачу" onAction="#updateTask"/>
     <Button text="Выход" onAction="#exit"/>
+    <ListView fx:id="taskListView" prefHeight="150"/>
 </VBox>

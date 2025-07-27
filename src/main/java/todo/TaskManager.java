@@ -24,17 +24,23 @@ public class TaskManager {
     }
 
 
-    public void addTask(Priority priority, String title, String description, boolean isCompleted){
-        int id = tasks.size() + 1;
-        tasks.add(new Task(id, priority, title, description, isCompleted));
+    public boolean addTask(Priority priority, String title, String description, boolean isCompleted){
+        if (title == null || description == null || description.trim().isEmpty()){
+            return false;
+        }
+        int id = tasks.stream().mapToInt(Task::getId).max().orElse(0) + 1;
+        Task newTask = new Task(id, priority, title.trim(), description.trim(), isCompleted);
+        tasks.add(newTask);
+        return saveTasks();
     }
 
-    public void getAllTasks(){
-        System.out.println("Список всех задач: ");
-        for (Task task : tasks){
-            System.out.println();
-            System.out.println(task.getTaskInfo());
-        }
+    public List<Task> getAllTasks(){
+//        System.out.println("Список всех задач: ");
+//        for (Task task : tasks){
+//            System.out.println();
+//            System.out.println(task.getTaskInfo());
+//        }
+        return new ArrayList<>(tasks);
     }
     public List<Task> getTasksByStatus(boolean completed){
         return tasks.stream().filter(task -> task.isCompleted() == completed).collect(Collectors.toList());
@@ -59,37 +65,48 @@ public class TaskManager {
         }
     }
 
-    public boolean updateTask(int id, String title, String description, Priority priority) {
-        Task task = findTaskById(id);
-        if (task != null) {
-            // Используем текущее значение, если новое пустое
-            if (title == null || title.trim().isEmpty()) title = task.getTitle();
-            if (description == null || description.trim().isEmpty()) description = task.getDescription();
-            if (priority == null) priority = task.getPriority();
+//    public boolean updateTask(int id, String title, String description, Priority priority) {
+//        Task task = findTaskById(id);
+//        if (task != null) {
+//            // Используем текущее значение, если новое пустое
+//            if (title == null || title.trim().isEmpty()) title = task.getTitle();
+//            if (description == null || description.trim().isEmpty()) description = task.getDescription();
+//            if (priority == null) priority = task.getPriority();
+//
+//            task.setTitle(title);
+//            task.setDescription(description);
+//            task.setPriority(priority);
+//            System.out.println("Обновлённая задача: " + task.getTaskInfo()); // Отладка
+//            return saveTasks();
+//        } else {
+//            System.out.println("Задачи с таким id не существует.");
+//            return false;
+//        }
+//    }
+public boolean updateTask(int id, String title, String description, Priority priority) {
+    Task task = findTaskById(id);
+    if (task != null) {
+        if (title == null || title.trim().isEmpty()) title = task.getTitle();
+        if (description == null || description.trim().isEmpty()) description = task.getDescription();
+        if (priority == null) priority = task.getPriority();
 
-            task.setTitle(title);
-            task.setDescription(description);
-            task.setPriority(priority);
-            System.out.println("Обновлённая задача: " + task.getTaskInfo()); // Отладка
-            return saveTasks();
-        } else {
-            System.out.println("Задачи с таким id не существует.");
-            return false;
-        }
+        task.setTitle(title.trim());
+        task.setDescription(description.trim());
+        task.setPriority(priority);
+        return saveTasks();
     }
+    return false;
+}
 
-    public void removeTask(int id){
+    public boolean removeTask(int id){
         Task task = findTaskById(id);
         if (task != null) {
             tasks.remove(task);
-            System.out.println("Задача удалена из списка.");
+            return saveTasks();
         }
-        else {
-            System.out.println("Задачи с таким id не существует.");
-        }
+        return false;
     }
     public boolean saveTasks() {
-        System.out.println("Список перед сохранением: " + tasks); // Отладка
         return fileManager.saveTasks(tasks);
     }
 }
