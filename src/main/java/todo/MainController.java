@@ -19,6 +19,7 @@ public class MainController {
     @FXML private Label descLabel;
     @FXML private Label priorityLabel;
     @FXML private Button submitButton;
+    @FXML private Label HintLabel;
     private TaskManager taskManager = new TaskManager();
     private String currentAction = ""; // Для отслеживания текущего действия
 
@@ -48,6 +49,7 @@ public class MainController {
     public void showUpdateForm() {
         clearFields();
         currentAction = "update";
+        HintLabel.setVisible(true);
         idLabel.setVisible(true);
         taskIdField.setVisible(true);
         titleLabelInput.setVisible(true);

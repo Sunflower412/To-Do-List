@@ -25,6 +25,7 @@
 
 
     <VBox fx:id="formContainer" spacing="10" visible="false" styleClass="form-container">
+        <Label text="Заполинте поля которые желаете обновить." fx:id="HintLabel" visible="false" />
         <Label text="ID задачи:" fx:id="idLabel" visible="false" />
         <TextField fx:id="taskIdField" promptText="Введите ID задачи" visible="false" />
         <Label text="Название задачи:" fx:id="titleLabelInput" visible="false" />
@@ -44,6 +45,6 @@
         <Button fx:id="submitButton" text="Подтвердить" onAction="#submitAction" visible="false" />
     </VBox>
 
-    <!-- Список задач -->
+
     <ListView fx:id="taskListView" prefHeight="150" />
 </VBox>
