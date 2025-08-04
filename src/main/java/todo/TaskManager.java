@@ -102,6 +102,11 @@ public boolean updateTask(int id, String title, String description, Priority pri
         Task task = findTaskById(id);
         if (task != null) {
             tasks.remove(task);
+            for (Task task1 : tasks){
+                if(task1.getId() > id){
+                    task1.setId(task1.getId() - 1);
+                }
+            }
             return saveTasks();
         }
         return false;

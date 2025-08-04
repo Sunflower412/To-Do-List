@@ -69,7 +69,7 @@ public class MainController {
         updateTaskList();
         clearFields();
     }
-
+    @FXML
     public void markTaskAsCompleted(){
         if (taskIdField.getText().isEmpty()){
             showAlert("Ошибка!", "Введите Id задачи.");
@@ -84,6 +84,28 @@ public class MainController {
         }
         if (taskManager.markTaskAsCompleted(id)){
             showAlert("Успех!", "Задача выполнена.");
+            updateTaskList();
+        } else {
+            showAlert("Ошибка!", "Задача с Id: " + id + " не найдена!");
+        }
+        clearFields();
+    }
+
+    @FXML
+    private void removeTask(){
+        if (taskIdField.getText().isEmpty()){
+            showAlert("Ошибка!", "Введите Id задачи.");
+            return;
+        }
+        int id;
+        try {
+            id = Integer.parseInt(taskIdField.getText().trim());
+        } catch (NumberFormatException e){
+            showAlert("Ошибка!", "Id должен быть числом.");
+            return;
+        }
+        if (taskManager.removeTask(id)){
+            showAlert("Успех!", "Задача удалена.");
             updateTaskList();
         } else {
             showAlert("Ошибка!", "Задача с Id: " + id + " не найдена!");
