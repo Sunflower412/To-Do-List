@@ -11,20 +11,27 @@
     "priority": "Medium",
     "title": "Сходить в зал",
     "description": "День ног",
-    "isCompleted": false
+    "isCompleted": true
   },
   {
     "id": 3,
     "priority": "Medium",
     "title": "Сходить в супермаркет",
     "description": "Купить овощи",
-    "isCompleted": false
+    "isCompleted": true
   },
   {
     "id": 4,
     "priority": "High",
     "title": "Погулять",
     "description": "Встретиться с Глебом",
+    "isCompleted": false
+  },
+  {
+    "id": 5,
+    "priority": "Low",
+    "title": "Убраться дома",
+    "description": "Помыть полы и протереть пыль",
     "isCompleted": false
   }
 ]

@@ -70,6 +70,27 @@ public class MainController {
         clearFields();
     }
 
+    public void markTaskAsCompleted(){
+        if (taskIdField.getText().isEmpty()){
+            showAlert("Ошибка!", "Введите Id задачи.");
+            return;
+        }
+        int id;
+        try {
+            id = Integer.parseInt(taskIdField.getText().trim());
+        } catch (NumberFormatException e){
+            showAlert("Ошибка!", "Id должен быть числом.");
+            return;
+        }
+        if (taskManager.markTaskAsCompleted(id)){
+            showAlert("Успех!", "Задача выполнена.");
+            updateTaskList();
+        } else {
+            showAlert("Ошибка!", "Задача с Id: " + id + " не найдена!");
+        }
+        clearFields();
+    }
+
     @FXML
     public void exit() {
         System.exit(0);
