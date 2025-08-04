@@ -15,7 +15,7 @@ public class FileManager {
         gson = new GsonBuilder().setPrettyPrinting().create();
     }
 
-    // Сохранить задачи в файл с возвращаемым значением
+
     public boolean saveTasks(List<Task> tasks) {
         File file = new File(FILE_PATH);
         try (Writer writer = new FileWriter(file)) {

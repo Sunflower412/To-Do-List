@@ -8,10 +8,10 @@
   },
   {
     "id": 2,
-    "priority": "Low",
+    "priority": "Medium",
     "title": "Убраться дома",
-    "description": "Помыть полы и протереть пыль",
-    "isCompleted": false
+    "description": "Помыть полы",
+    "isCompleted": true
   },
   {
     "id": 3,
@@ -21,10 +21,10 @@
     "isCompleted": false
   },
   {
-    "id": 5,
-    "priority": "High",
-    "title": "Убраться дома",
-    "description": "Помыть полы",
+    "id": 4,
+    "priority": "Medium",
+    "title": "Погулять",
+    "description": "Встретиться с другом",
     "isCompleted": false
   }
 ]

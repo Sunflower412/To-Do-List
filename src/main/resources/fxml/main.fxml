@@ -5,28 +5,45 @@
 <?import javafx.collections.FXCollections?>
 <?import java.lang.String?>
 
-<VBox alignment="CENTER" spacing="10" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="todo.MainController">
+<VBox alignment="CENTER" spacing="10" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/24" xmlns:fx="http://javafx.com/fxml/1" fx:controller="todo.MainController">
     <padding>
         <Insets top="20" right="20" bottom="20" left="20"/>
     </padding>
-    <Label text="To-Do List" style="-fx-font-size: 30px; -fx-font-weight: bold;"/>
-    <TextField fx:id="taskIdField" promptText="Введите ID задачи"/>
-    <TextField fx:id="taskTitleField" promptText="Название задачи"/>
-    <TextField fx:id="taskDescriptionField" promptText="Описание задачи"/>
-    <ComboBox fx:id="priorityChoice" promptText="Приоритет задачи">
-        <items>
-            <FXCollections fx:factory="observableArrayList">
-                <String fx:value="Low"/>
-                <String fx:value="Medium"/>
-                <String fx:value="High"/>
-            </FXCollections>
-        </items>
-    </ComboBox>
-    <Button text="Добавить задачу" onAction="#addTask"/>
-    <Button text="Показать все задачи" onAction="#showAllTasks"/>
-    <Button text="Редактировать задачу" onAction="#updateTask"/>
-    <Button text="Пометить задачу как выполненную" onAction="#markTaskAsCompleted"/>
-    <Button text="Удалить задачу" onAction="#removeTask"/>
-    <Button text="Выход" onAction="#exit"/>
-    <ListView fx:id="taskListView" prefHeight="150"/>
+
+
+    <Label text="To-Do List" fx:id="titleLabel" />
+
+
+    <HBox spacing="10" alignment="CENTER">
+        <Button text="Добавить задачу" onAction="#showAddForm" />
+        <Button text="Редактировать задачу" onAction="#showUpdateForm" />
+        <Button text="Пометить как выполненную" onAction="#showCompleteForm" />
+        <Button text="Удалить задачу" onAction="#showDeleteForm" />
+        <Button text="Показать все задачи" onAction="#showAllTasks" />
+        <Button text="Выход" onAction="#exit" />
+    </HBox>
+
+
+    <VBox fx:id="formContainer" spacing="10" visible="false" styleClass="form-container">
+        <Label text="ID задачи:" fx:id="idLabel" visible="false" />
+        <TextField fx:id="taskIdField" promptText="Введите ID задачи" visible="false" />
+        <Label text="Название задачи:" fx:id="titleLabelInput" visible="false" />
+        <TextField fx:id="taskTitleField" promptText="Название задачи" visible="false" />
+        <Label text="Описание задачи:" fx:id="descLabel" visible="false" />
+        <TextField fx:id="taskDescriptionField" promptText="Описание задачи" visible="false" />
+        <Label text="Приоритет:" fx:id="priorityLabel" visible="false" />
+        <ComboBox fx:id="priorityChoice" promptText="Приоритет задачи" visible="false">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="Low"/>
+                    <String fx:value="Medium"/>
+                    <String fx:value="High"/>
+                </FXCollections>
+            </items>
+        </ComboBox>
+        <Button fx:id="submitButton" text="Подтвердить" onAction="#submitAction" visible="false" />
+    </VBox>
+
+    <!-- Список задач -->
+    <ListView fx:id="taskListView" prefHeight="150" />
 </VBox>
