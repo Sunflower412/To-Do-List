@@ -7,32 +7,20 @@ import javafx.stage.Stage;
 import javafx.scene.control.Alert;
 
 public class MainController {
-    @FXML
-    private Label titleLabel;
-    @FXML
-    private TextField taskIdField;
-    @FXML
-    private TextField taskTitleField;
-    @FXML
-    private TextField taskDescriptionField;
-    @FXML
-    private ComboBox<String> priorityChoice;
-    @FXML
-    private ListView<String> taskListView;
-    @FXML
-    private VBox formContainer;
-    @FXML
-    private Label idLabel;
-    @FXML
-    private Label titleLabelInput;
-    @FXML
-    private Label descLabel;
-    @FXML
-    private Label priorityLabel;
-    @FXML
-    private Button submitButton;
+    @FXML private Label titleLabel;
+    @FXML private TextField taskIdField;
+    @FXML private TextField taskTitleField;
+    @FXML private TextField taskDescriptionField;
+    @FXML private ComboBox<String> priorityChoice;
+    @FXML private ListView<String> taskListView;
+    @FXML private VBox formContainer;
+    @FXML private Label idLabel;
+    @FXML private Label titleLabelInput;
+    @FXML private Label descLabel;
+    @FXML private Label priorityLabel;
+    @FXML private Button submitButton;
     private TaskManager taskManager = new TaskManager();
-    private String currentAction = "";
+    private String currentAction = ""; // Для отслеживания текущего действия
 
     @FXML
     public void initialize() {
@@ -117,9 +105,11 @@ public class MainController {
     public void submitAction() {
         if (currentAction.equals("add")) {
             String title = taskTitleField.getText().trim();
+
+
             String description = taskDescriptionField.getText().trim();
             String priorityStr = priorityChoice.getValue();
-            if (title.isEmpty() || description.isEmpty() || priorityStr == null){
+            if (title.isEmpty() || description.isEmpty() || priorityStr == null) {
                 showAlert("Ошибка!", "Все поля должны быть заполнены.");
                 return;
             }
@@ -130,7 +120,6 @@ public class MainController {
             } else {
                 showAlert("Ошибка!", "Не удалось добавить задачу.");
             }
-
         } else if (currentAction.equals("update")) {
             if (taskIdField.getText().isEmpty()) {
                 showAlert("Ошибка!", "Введите ID задачи.");
@@ -143,14 +132,10 @@ public class MainController {
                 showAlert("Ошибка!", "ID должен быть числом.");
                 return;
             }
-            String title = taskTitleField.getText().trim();
-            String description = taskDescriptionField.getText().trim();
+            String title = taskTitleField.getText().trim().isEmpty() ? null : taskTitleField.getText().trim();
+            String description = taskDescriptionField.getText().trim().isEmpty() ? null : taskDescriptionField.getText().trim();
             String priorityStr = priorityChoice.getValue();
-            if (title.isEmpty() || description.isEmpty() || priorityStr == null){
-                showAlert("Ошибка!", "Все поля должны быть заполнены.");
-                return;
-            }
-            Priority priority = Priority.valueOf(priorityStr);
+            Priority priority = priorityStr == null ? null : Priority.valueOf(priorityStr);
             if (taskManager.updateTask(id, title, description, priority)) {
                 showAlert("Успех!", "Задача обновлена.");
             } else {
@@ -219,6 +204,7 @@ public class MainController {
     }
 
 
+
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
@@ -226,5 +212,4 @@ public class MainController {
         alert.setContentText(message);
         alert.showAndWait();
     }
-
 }
