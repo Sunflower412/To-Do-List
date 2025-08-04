@@ -26,5 +26,12 @@
     "title": "Погулять",
     "description": "Встретиться с Глебом",
     "isCompleted": false
+  },
+  {
+    "id": 5,
+    "priority": "High",
+    "title": "Убраться дома",
+    "description": "Помыть полы",
+    "isCompleted": false
   }
 ]
