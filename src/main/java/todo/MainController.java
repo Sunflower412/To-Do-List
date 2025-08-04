@@ -2,15 +2,15 @@ package todo;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.layout.VBox;
 
 public class MainController {
     @FXML private TextField taskIdField;
     @FXML private TextField taskTitleField;
     @FXML private TextField taskDescriptionField;
-    @FXML private ChoiceBox<String> priorityChoice;
+    @FXML private ComboBox<String> priorityChoice;
     @FXML private ListView<String> taskListView;
     private TaskManager taskManager = new TaskManager();
-
     @FXML
     public void addTask() {
         String title = taskTitleField.getText();
@@ -130,7 +130,6 @@ public class MainController {
         taskDescriptionField.setText("");
         priorityChoice.setValue(null);
     }
-
 
     }
 

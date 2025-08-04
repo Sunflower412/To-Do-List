@@ -12,5 +12,12 @@
     "title": "Убраться дома",
     "description": "Помыть полы и протереть пыль",
     "isCompleted": false
+  },
+  {
+    "id": 3,
+    "priority": "Medium",
+    "title": "Пойти к врачу",
+    "description": "Сдать анализ крови",
+    "isCompleted": false
   }
 ]
