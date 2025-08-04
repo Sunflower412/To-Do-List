@@ -19,5 +19,12 @@
     "title": "Пойти к врачу",
     "description": "Сдать анализ крови",
     "isCompleted": false
+  },
+  {
+    "id": 5,
+    "priority": "High",
+    "title": "Убраться дома",
+    "description": "Помыть полы",
+    "isCompleted": false
   }
 ]
