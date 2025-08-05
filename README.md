@@ -20,9 +20,11 @@
    ```bash
    git clone https://github.com/Sunflower412/To-Do-List.git
 
-1. Перейдите в папку 
-  cd To-Do-List
-2. Соберите и запустите
+1. Перейдите в папку
+   ```bash
+   cd To-Do-List
+3. Соберите и запустите
+   ```bash
    mvn clean install
    mvn javafx:run
 
